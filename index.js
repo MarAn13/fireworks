@@ -199,7 +199,6 @@ if (canvas.getContext) {
     var rate = 50;
     var index = 0;
     requestAnimationFrame(draw);
-    console.log(window.innerWidth.toString() + ' ' + canvas.width.toString());
 } else {
     document.write('Sorry');
 }
