@@ -1,2 +1,0 @@
-make particle into line (behaviour)
-create special sound effect for lines (which are particles)
