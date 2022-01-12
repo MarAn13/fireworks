@@ -41,9 +41,6 @@ class Firework {
 
 function mouse_click_firework(x, y) {
     if (mouse_click_firework_status) {
-        if (current_sound_index === max_sound_index) {
-            current_sound_index = 0;
-        }
         let firework_obj = new Firework(false, gen_int(0, firework_colors.length),
             firework_sound_takeoff[current_sound_index], firework_sound_exp[current_sound_index],
             firework_sound_particle[current_sound_index],
@@ -52,6 +49,10 @@ function mouse_click_firework(x, y) {
             x,
             y);
         fireworks.push(firework_obj);
+        ++current_sound_index;
+        if (current_sound_index === max_sound_index) {
+            current_sound_index = 0;
+        }
         mouse_click_firework_status = false;
     }
 }
@@ -87,7 +88,7 @@ function draw() {
                 context.strokeStyle = temp.color_str;
             }
             context.beginPath();
-            context.moveTo(firework.x_current, firework.y_current);
+            context.moveTo(Math.floor(firework.x_current), Math.floor(firework.y_current));
             // uncomment to debug
             //if (firework.x_start === firework.x_current) {
             //    context.fillStyle = 'red';
@@ -95,7 +96,7 @@ function draw() {
             //    context.fillStyle = 'orange';
             //}
             //context.fillRect(firework.x_current, firework.y_current, 5, 5);
-            context.lineTo(x_next, y_next);
+            context.lineTo(Math.floor(x_next), Math.floor(y_next));
             // uncomment to debug
             //context.fillStyle = 'blue';
             //context.fillRect(x_next, y_next, 5, 5);
@@ -103,11 +104,6 @@ function draw() {
             fireworks[i].x_current = x_next;
             fireworks[i].y_current = y_next;
             ++fireworks[i].current_step;
-            if (current_sound_index < firework_sound_takeoff.length) {
-                ++current_sound_index;
-            } else {
-                current_sound_index = 0;
-            }
         } else {
             if (!firework.particle) {
                 firework.sound_exp.pause();
@@ -134,9 +130,6 @@ function draw() {
         }
     }
     if (index % firework_creation_rate === 0) {
-        if (current_sound_index === max_sound_index) {
-            current_sound_index = 0;
-        }
         let firework_obj = new Firework(false, gen_int(0, firework_colors.length),
             firework_sound_takeoff[current_sound_index], firework_sound_exp[current_sound_index],
             firework_sound_particle[current_sound_index],
@@ -145,6 +138,10 @@ function draw() {
             gen_int(particle_max_distance, canvas_width - particle_max_distance),
             gen_int(particle_max_distance, canvas_height / 2));
         fireworks.push(firework_obj);
+        ++current_sound_index;
+        if (current_sound_index === max_sound_index) {
+            current_sound_index = 0;
+        }
     }
     if (index % mouse_click_firework_rate === 0) {
         mouse_click_firework_status = true;
