@@ -182,17 +182,17 @@ if (canvas.getContext) {
     var max_sound_index = 10;
     for (let i = 0; i < max_sound_index; ++i) {
         let temp = new Audio(firework_takeoff_sound_path);
-        temp.volume = 0.03; // takeoff volume
+        temp.volume = 0.01; // takeoff volume
         firework_sound_takeoff.push(temp);
         temp = new Audio(firework_exp_sound_path);
         temp.volume = 0.5; // explosion volume
         firework_sound_exp.push(temp);
         temp = new Audio(firework_particle_sound_path);
-        temp.volume = 0.2; // particle volume
+        temp.volume = 0.03; // particle volume
         firework_sound_particle.push(temp);
     }
     var fireworks = [];
-    var firework_creation_rate = 40;
+    var firework_creation_rate = 60;
     var min_particles = 50;
     var max_particles = 500;
     var particle_max_distance = 100;
